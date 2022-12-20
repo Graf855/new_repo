@@ -3,19 +3,21 @@ from PyQt5.QtGui import QPainter, QPixmap, QPen, QColor
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
 from random import randint
+from ui_file import Ui_MainWindow
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
-        MainWindow.resize(self, 650, 650)
+        self.setupUi(self)
 
         self.pushButton.setFixedSize(150, 120)
         self.pushButton.clicked.connect(self.circle)
 
         self.label = QLabel()
-        canvas = QPixmap(650, 650)
+        # Размеры поля где будут появляться окружности
+        self.w_h = 650
+        canvas = QPixmap(self.w_h, self.w_h)
         self.label.setPixmap(canvas)
 
         layout = QGridLayout(self.centralwidget)
@@ -26,7 +28,7 @@ class MainWindow(QMainWindow):
         # цикл для случайного количества новых окружностей
         for _ in range(randint(1, 5)):
             d = randint(10, 200)
-            x, y = [randint(10, 400) for _ in range(2)]
+            x, y = [randint(10, self.w_h - d) for _ in range(2)]
         # создаем экземпляр QPainter, передавая холст (self.label.pixmap())
             painter = QPainter(self.label.pixmap())
             pen = QPen()
