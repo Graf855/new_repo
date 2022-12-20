@@ -23,6 +23,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.label, 1, 0)
 
     def circle(self):
+        # цикл для случайного количества новых окружностей
         for _ in range(randint(1, 5)):
             d = randint(10, 200)
             x, y = [randint(10, 400) for _ in range(2)]
