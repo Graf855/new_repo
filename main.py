@@ -9,13 +9,13 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('UI.ui', self)
-        MainWindow.resize(self, 600, 600)
+        MainWindow.resize(self, 650, 650)
 
         self.pushButton.setFixedSize(150, 120)
         self.pushButton.clicked.connect(self.circle)
 
         self.label = QLabel()
-        canvas = QPixmap(600, 600)
+        canvas = QPixmap(650, 650)
         self.label.setPixmap(canvas)
 
         layout = QGridLayout(self.centralwidget)
